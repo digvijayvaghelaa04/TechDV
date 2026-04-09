@@ -1,71 +1,169 @@
-# TechDV LMS 🚀 - Enterprise E-Learning Platform
+# TechDV LMS 🚀
 
-TechDV is a cinematic, ultra-modern Learning Management System (LMS) built with the MERN stack. Designed for the cutting-edge of online education, it features a highly optimized architecture, immersive UI/UX, real-time WebRTC Live Mentorship, and an AI-driven teaching assistant.
+TechDV is a modern Learning Management System (LMS) built with the MERN stack to provide a smooth and scalable online learning experience. It is designed for role-based learning management, secure authentication, course delivery, student progress tracking, and admin-level platform control.
 
 ## ✨ Features
 
-- 🎭 **Role-Based Access Control**: Granular permissions for Super Admins, Admins, Instructors, and Students.
-- 🎬 **Premium Cinematic UI/UX**: Dark-mode aesthetic powered by Tailwind CSS, glassmorphism, and Framer Motion micro-interactions.
-- 📡 **WebRTC Live Mentorship**: Ultra low-latency virtual classrooms powered by Agora and Socket.io for instantaneous chat.
-- 🤖 **AI Assistant Widget**: Floating, context-aware AI chat integrated directly into the application layout.
-- 🏆 **Gamification**: Built-in visual reward hooks (Confetti bursts) on lesson completion.
-- ⚡ **Highly Scalable Architecture**: Clean `src/` directory separation, component lazy-loading, and heavily optimized Vite compilation.
+- **Role-Based Access Control** for Super Admin, Admin, Instructor, and Student
+- **Secure Authentication & Authorization** using JWT
+- **Course Management System** for creating, updating, and managing courses
+- **Video Lecture Learning** with course resources and structured content
+- **Student Enrollment Flow** with controlled course access
+- **Progress Tracking** for learners
+- **Admin Dashboard** for managing users, courses, and platform activity
+- **Responsive UI** built for desktop, tablet, and mobile devices
+- **Scalable Project Structure** with clean frontend and backend architecture
 
 ## 🛠 Tech Stack
 
-**Frontend**
+### Frontend
 - React 18
 - Vite
 - Tailwind CSS
-- Redux Toolkit
-- Framer Motion
-- React Router DOM v6
-- Agora WebRTC Client
-- Socket.io Client
+- Axios
+- React Router DOM
+- Redux Toolkit / Context API
 
-**Backend**
-- Node.js & Express
-- MongoDB & Mongoose
-- JSON Web Tokens (JWT) & Bcrypt
-- Socket.io
-- Agora Access Token Builder
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcrypt
+
+## 📂 Project Structure
+
+```bash
+TechDV/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   ├── utils/
+│   │   └── assets/
+│
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── models/
+│   │   ├── middleware/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── config/
+│
+└── README.md
+```
 
 ## 🚀 Setup Instructions
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/digvijayvaghelaa04/TechDV.git
-   cd TechDV
-   ```
+### 1. Clone the repository
 
-2. **Install Backend Dependencies:**
-   ```bash
-   cd backend
-   npm install
-   ```
+```bash
+git clone https://github.com/digvijayvaghelaa04/TechDV.git
+cd TechDV
+```
 
-3. **Install Frontend Dependencies:**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
+### 2. Install dependencies
 
-4. **Environment Configuration:**
-   - Duplicate `.env.example` in both `backend` and `frontend` folders and rename them to `.env`.
-   - Provide your MongoDB URI and Agora API credentials in `backend/.env`.
+#### Frontend
 
-5. **Start the Application:**
-   ```bash
-   # Terminal 1 - Backend
-   cd backend
-   npm run dev
+```bash
+cd frontend
+npm install
+```
 
-   # Terminal 2 - Frontend
-   cd frontend
-   npm run dev
-   ```
+#### Backend
 
-## 🔒 Security
-All API keys, secrets, and environment configurations are excluded via `.gitignore` to maintain industry-standard security compliance. 
+```bash
+cd ../backend
+npm install
+```
 
-*Designed and engineered by Digvijay Vaghela.*
+### 3. Configure environment variables
+
+Create a `.env` file inside the `backend` folder and add:
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+NODE_ENV=development
+```
+
+If needed, create a `.env` file inside the `frontend` folder for frontend environment variables.
+
+### 4. Run the project
+
+#### Start backend
+
+```bash
+cd backend
+npm run dev
+```
+
+#### Start frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+## 🔐 User Roles
+
+### Super Admin
+
+* Full platform control
+* Manage admins, instructors, students, and courses
+
+### Admin
+
+* Manage platform operations
+* Approve and monitor courses and users
+
+### Instructor
+
+* Create and manage own courses
+* Upload lessons and learning resources
+
+### Student
+
+* Enroll in courses
+* Watch lessons and track progress
+
+## 📌 Core Modules
+
+* Authentication System
+* Course Management
+* User Management
+* Enrollment System
+* Learning Dashboard
+* Role-Based Authorization
+* Progress Monitoring
+
+## 🌟 Future Improvements
+
+* Payment gateway integration
+* Certificate generation
+* Live classes
+* Quiz and assessment module
+* Instructor earnings dashboard
+* AI-based learning assistant
+
+## 🤝 Contribution
+
+Contributions, suggestions, and improvements are welcome.
+
+## 📧 Contact
+
+**Digvijay Vaghela**
+Full Stack Developer
+GitHub: [digvijayvaghelaa04](https://github.com/digvijayvaghelaa04)
+
+## 📜 License
+
+This project is for learning, academic, and portfolio purposes.
