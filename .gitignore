@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production
+build/
+dist/
+
+# Env files (SECURITY CRITICAL)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+frontend/.env
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+frontend/dev_output.log
+
+# Misc
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Backend specific
+backend/logs/
+backend/uploads/
+backend/crash.log
+backend/server_log.txt
+
+# Frontend specific
+frontend/dist/
+frontend/.eslintcache
+frontend/coverage/
+
+# Course Data (Heavy Media)
+cource-data/*.mp4
+cource-data/*.pdf
+cource-data/
