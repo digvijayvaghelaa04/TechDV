@@ -78,18 +78,23 @@ const xssClean = (req, res, next) => {
 // CORS configuration
 const corsOptions = {
     origin: function (origin, callback) {
-        // Block requests with no origin in production (dev tools allowed in development only)
+        // Allow requests with no origin (Render health checks, Postman, mobile apps)
+        // Only block no-origin in strict mode if explicitly set
         if (!origin) {
-            if (process.env.NODE_ENV === 'development') return callback(null, true);
-            return callback(new Error('No origin not allowed in production'));
+            return callback(null, true);
         }
 
-        const whitelist = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',').map(origin => origin.trim()) : ['http://localhost:5173'];
+        const whitelist = process.env.FRONTEND_URL
+            ? process.env.FRONTEND_URL.split(',').map(o => o.trim())
+            : ['http://localhost:5173'];
 
-        // Add 127.0.0.1 variants just in case
+        // Always allow localhost variants for dev
         whitelist.push('http://127.0.0.1:5173', 'http://127.0.0.1:5174', 'http://localhost:5174');
 
-        if (whitelist.indexOf(origin) !== -1) {
+        // Allow any Vercel preview URL (*.vercel.app)
+        const isVercelPreview = /\.vercel\.app$/.test(origin);
+
+        if (whitelist.indexOf(origin) !== -1 || isVercelPreview) {
             callback(null, true);
         } else {
             console.error(`CORS BLOCKED: Origin ${origin} not in whitelist: ${whitelist}`);

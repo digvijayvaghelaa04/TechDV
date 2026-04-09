@@ -147,8 +147,9 @@ if (require.main === module) {
   // Socket.io Integration for Live Broadcasts
   const io = require('socket.io')(server, {
     cors: {
-      origin: '*',
-      methods: ['GET', 'POST']
+      origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',').map(o => o.trim()) : ['http://localhost:5173'],
+      methods: ['GET', 'POST'],
+      credentials: true
     }
   });
 
