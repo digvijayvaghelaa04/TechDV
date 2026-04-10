@@ -39,7 +39,11 @@ app.use(security.generalLimiter);
 // ⚙️ CORE MIDDLEWARE
 // ==========================================
 
-// Parse request body (webhook route uses route-level express.raw middleware)
+// Stripe webhook MUST receive the raw body for signature verification.
+// This must be registered before any JSON/body parsers.
+app.use('/api/v1/payment/webhook', express.raw({ type: 'application/json' }));
+
+// Parse request body
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());

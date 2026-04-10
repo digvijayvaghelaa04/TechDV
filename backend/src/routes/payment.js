@@ -32,6 +32,6 @@ router.put('/admin/:id/approve', protect, authorize('admin', 'super_admin'), app
 router.put('/admin/:id/reject', protect, authorize('admin', 'super_admin'), rejectPayment);
 
 // Webhook endpoint
-router.post('/webhook', express.raw({ type: 'application/json' }), stripeWebhook);
+router.post('/webhook', stripeWebhook);
 
 module.exports = router;
