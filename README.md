@@ -1,71 +1,71 @@
-# TechDV LMS 🚀 - Enterprise E-Learning Platform
+# TechDV LMS
 
-TechDV is a cinematic, ultra-modern Learning Management System (LMS) built with the MERN stack. Designed for the cutting-edge of online education, it features a highly optimized architecture, immersive UI/UX, real-time WebRTC Live Mentorship, and an AI-driven teaching assistant.
+Production-ready MERN learning platform with role-based access, course management, payments, enrollment, progress tracking, and live classes.
 
-## ✨ Features
+## Stack
 
-- 🎭 **Role-Based Access Control**: Granular permissions for Super Admins, Admins, Instructors, and Students.
-- 🎬 **Premium Cinematic UI/UX**: Dark-mode aesthetic powered by Tailwind CSS, glassmorphism, and Framer Motion micro-interactions.
-- 📡 **WebRTC Live Mentorship**: Ultra low-latency virtual classrooms powered by Agora and Socket.io for instantaneous chat.
-- 🤖 **AI Assistant Widget**: Floating, context-aware AI chat integrated directly into the application layout.
-- 🏆 **Gamification**: Built-in visual reward hooks (Confetti bursts) on lesson completion.
-- ⚡ **Highly Scalable Architecture**: Clean `src/` directory separation, component lazy-loading, and heavily optimized Vite compilation.
+- Frontend: React, Vite, Tailwind CSS, Redux Toolkit, React Query, Axios
+- Backend: Node.js, Express, MongoDB, Mongoose, JWT, Socket.IO
+- Deploy: Vercel (frontend), Render/Railway (backend)
 
-## 🛠 Tech Stack
+## Project Structure
 
-**Frontend**
-- React 18
-- Vite
-- Tailwind CSS
-- Redux Toolkit
-- Framer Motion
-- React Router DOM v6
-- Agora WebRTC Client
-- Socket.io Client
+- `frontend/` - React SPA
+- `backend/` - Express API and business logic
+- `cource-data/` - static course media (protected/private assets)
 
-**Backend**
-- Node.js & Express
-- MongoDB & Mongoose
-- JSON Web Tokens (JWT) & Bcrypt
-- Socket.io
-- Agora Access Token Builder
+## Local Development
 
-## 🚀 Setup Instructions
+1. Install dependencies:
+   - `cd backend && npm install`
+   - `cd ../frontend && npm install`
+2. Create env files:
+   - `backend/.env` from `backend/.env.example`
+   - `frontend/.env` from `frontend/.env.example`
+3. Start backend: `cd backend && npm run dev`
+4. Start frontend: `cd frontend && npm run dev`
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/digvijayvaghelaa04/TechDV.git
-   cd TechDV
-   ```
+## Environment Variables
 
-2. **Install Backend Dependencies:**
-   ```bash
-   cd backend
-   npm install
-   ```
+Required backend variables (minimum):
 
-3. **Install Frontend Dependencies:**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
+- `NODE_ENV`
+- `PORT`
+- `MONGODB_URI`
+- `JWT_SECRET`
+- `JWT_REFRESH_SECRET`
+- `FRONTEND_URL`
 
-4. **Environment Configuration:**
-   - Duplicate `.env.example` in both `backend` and `frontend` folders and rename them to `.env`.
-   - Provide your MongoDB URI and Agora API credentials in `backend/.env`.
+Required frontend variables (minimum):
 
-5. **Start the Application:**
-   ```bash
-   # Terminal 1 - Backend
-   cd backend
-   npm run dev
+- `VITE_API_URL` (must end with `/api/v1`)
+- `VITE_STORAGE_URL` (backend origin for uploads/media)
 
-   # Terminal 2 - Frontend
-   cd frontend
-   npm run dev
-   ```
+## Deployment Notes
 
-## 🔒 Security
-All API keys, secrets, and environment configurations are excluded via `.gitignore` to maintain industry-standard security compliance. 
+### Frontend (Vercel)
 
-*Designed and engineered by Digvijay Vaghela.*
+- Set `VITE_API_URL` to your deployed backend API URL.
+- Set `VITE_STORAGE_URL` to your backend origin.
+
+### Backend (Render/Railway)
+
+- Set `NODE_ENV=production`.
+- Set `FRONTEND_URL` to your deployed frontend URL (comma-separated if multiple).
+- Ensure MongoDB Atlas network access and credentials are valid.
+- Health check endpoint: `/health`.
+
+## Scripts
+
+Backend:
+
+- `npm run dev` - start with nodemon
+- `npm start` - production start
+- `npm run lint` - lint backend code
+- `npm run seed` - optional data seeding
+
+Frontend:
+
+- `npm run dev` - start Vite dev server
+- `npm run build` - production build
+- `npm run preview` - preview production build

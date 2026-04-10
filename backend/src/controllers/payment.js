@@ -142,7 +142,8 @@ exports.stripeWebhook = asyncHandler(async (req, res, next) => {
 
     let event;
     try {
-        event = paymentService.constructEvent(req.rawBody, sig);
+        // Route uses express.raw, so req.body is a Buffer
+        event = paymentService.constructEvent(req.body, sig);
     } catch (err) {
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }

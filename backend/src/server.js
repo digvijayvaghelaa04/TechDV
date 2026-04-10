@@ -39,31 +39,9 @@ app.use(security.generalLimiter);
 // ⚙️ CORE MIDDLEWARE
 // ==========================================
 
-// Parse Raw Body for Stripe Webhooks (MUST be before express.json)
-app.use((req, res, next) => {
-  if (req.originalUrl === '/api/v1/payment/webhook') {
-    next(); // Skip json parsing for webhook, handled by route specific raw parser or here
-  } else {
-    express.json({ limit: '10mb' })(req, res, next);
-  }
-});
-
-app.use((req, res, next) => {
-  if (req.originalUrl === '/api/v1/payment/webhook') {
-    // Create rawBody for Stripe signature verification
-    let data = '';
-    req.setEncoding('utf8');
-    req.on('data', function (chunk) {
-      data += chunk;
-    });
-    req.on('end', function () {
-      req.rawBody = data;
-      next();
-    });
-  } else {
-    express.urlencoded({ extended: true, limit: '10mb' })(req, res, next);
-  }
-});
+// Parse request body (webhook route uses route-level express.raw middleware)
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
 // Request Logging

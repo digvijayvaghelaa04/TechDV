@@ -48,11 +48,12 @@ const sendTokenResponse = async (user, statusCode, res, req) => {
     const refreshToken = await generateRefreshToken(user, req.ip);
 
     // cookie options
+    const isProduction = process.env.NODE_ENV === 'production';
     const cookieOptions = {
         httpOnly: true,
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
-        secure: false, // Force false for localhost debugging
-        sameSite: 'Lax', // Required for cross-port cookie sending in some browsers, Strict might block if link from external site
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax',
         path: '/' // Ensure cookie is available on all routes
     };
 

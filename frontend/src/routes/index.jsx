@@ -67,7 +67,7 @@ export default function AppRoutes() {
                 <Route path="/payment/history" element={<ProtectedRoute><PaymentHistory /></ProtectedRoute>} />
                 <Route path="/payment/:courseId" element={<ProtectedRoute><PaymentPage /></ProtectedRoute>} />
 
-                <Route path="/course/:id/learn" element={<CoursePlayer />} />
+                <Route path="/course/:id/learn" element={<ProtectedRoute><CoursePlayer /></ProtectedRoute>} />
 
                 <Route path="/instructor/dashboard" element={<ProtectedRoute allowedRoles={['instructor', 'admin', 'super_admin']}><InstructorDashboard /></ProtectedRoute>} />
                 <Route path="/instructor/earnings" element={<ProtectedRoute allowedRoles={['instructor', 'admin', 'super_admin']}><Earnings /></ProtectedRoute>} />

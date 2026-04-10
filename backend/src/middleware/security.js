@@ -91,8 +91,9 @@ const corsOptions = {
         // Always allow localhost variants for dev
         whitelist.push('http://127.0.0.1:5173', 'http://127.0.0.1:5174', 'http://localhost:5174');
 
-        // Allow any Vercel preview URL (*.vercel.app)
-        const isVercelPreview = /\.vercel\.app$/.test(origin);
+        // Optional: allow Vercel preview URLs only when explicitly enabled
+        const allowVercelPreviews = process.env.ALLOW_VERCEL_PREVIEWS === 'true';
+        const isVercelPreview = allowVercelPreviews && /^https:\/\/[a-zA-Z0-9-]+\.vercel\.app$/.test(origin);
 
         if (whitelist.indexOf(origin) !== -1 || isVercelPreview) {
             callback(null, true);

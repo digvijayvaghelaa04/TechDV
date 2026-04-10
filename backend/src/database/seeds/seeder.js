@@ -8,7 +8,9 @@ const { execSync } = require('child_process');
 
 try {
     var ffmpeg = require('ffmpeg-static');
-} catch (e) { }
+} catch (e) {
+    ffmpeg = null;
+}
 
 const getRealDuration = (filePath) => {
     if (!ffmpeg) return 600;

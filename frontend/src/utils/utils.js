@@ -11,6 +11,8 @@ export const DEFAULT_AVATAR = 'https://ui-avatars.com/api/?background=random&col
 export function getImgUrl(path, isAvatar = false) {
     if (!path || path === 'default-avatar.jpg') return isAvatar ? DEFAULT_AVATAR : DEFAULT_COURSE_IMAGE;
     if (path.startsWith('http')) return path;
-    const baseUrl = import.meta.env.VITE_STORAGE_URL || 'http://localhost:5000';
+    const apiBase = import.meta.env.VITE_API_URL;
+    const derivedApiOrigin = apiBase ? apiBase.replace(/\/api\/v1\/?$/, '') : '';
+    const baseUrl = import.meta.env.VITE_STORAGE_URL || derivedApiOrigin || 'http://localhost:5000';
     return `${baseUrl}${path.startsWith('/') ? '' : '/'}${path}`;
 }

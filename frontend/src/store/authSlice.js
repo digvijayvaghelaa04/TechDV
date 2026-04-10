@@ -11,6 +11,8 @@ const initialState = {
     isLoading: false,
     isOtpSent: false,       // true after register, triggers redirect to /verify-otp
     tempEmail: null,        // stored for OTP page to know which email to verify/resend
+    actualEmail: null,
+    requireVerification: false,
     message: '',
 };
 
