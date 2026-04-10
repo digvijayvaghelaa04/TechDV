@@ -342,11 +342,13 @@ exports.logout = asyncHandler(async (req, res, next) => {
         );
     }
 
-    res.cookie('refreshToken', 'none', {
-        expires: new Date(Date.now() + 10 * 1000),
+    const isProduction = process.env.NODE_ENV === 'production';
+    res.cookie('refreshToken', '', {
+        expires: new Date(0),
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax',
+        path: '/'
     });
 
     res.status(200).json({ success: true, data: {} });
